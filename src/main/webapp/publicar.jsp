@@ -4,6 +4,7 @@
     Author     : Samuell
 --%>
 
+<%@page import="br.edu.ifpb.pod.Message"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -34,6 +35,12 @@
                                 <input type="submit" value="Eviar mensagem">
                                 <div class="clear"> </div>
                             </form>
+                            <%
+                            Message message = (Message)session.getAttribute("message");
+                            if(message!=null){
+                                out.print(message.getMessageContent());
+                            }
+                            %>
 
                         </div>
 

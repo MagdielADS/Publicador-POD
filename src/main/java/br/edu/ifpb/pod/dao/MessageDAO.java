@@ -37,10 +37,12 @@ public class MessageDAO {
             }
         }
         
+        MessageIdGenerator mId = new MessageIdGenerator();
+        
         if(!equalsMessage){
             try {
                 PreparedStatement stmt = connection.prepareStatement(sql);
-                stmt.setString(1, message.getId());
+                stmt.setString(1, mId.generate());
                 stmt.setString(2, message.getMessageContent());
                 stmt.setString(3, message.getFrom());
                 stmt.setString(4, message.getTo());

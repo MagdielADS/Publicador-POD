@@ -47,7 +47,8 @@ public class PublicarServlet extends HttpServlet {
         try {
             Registry registry = LocateRegistry.getRegistry("10.1.1.105", 10888);
             FacadeService service = (FacadeService) registry.lookup("FacadeService");
-            service.sendMessage(session, msg);
+            Message message = service.sendMessage(session, msg);
+            request.getSession().setAttribute("message", message);
         } catch (RemoteException | NotBoundException ex) {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }        
