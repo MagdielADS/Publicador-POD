@@ -13,36 +13,36 @@
         <title>JSP Page</title>
     </head>
     <body>
-		<header>
-		
-		
-		</header>
-		
-		
-		<div id="main">
-		
-		 <div id="titulo">
-			<img src="images/facebook-logo.png"> 
-			<h2> RMI Facebook <h2>
-		 </div>
-		 <div id="container-publicar">
-				<form method="POST" action="" id="form-mensagem"> 
-                          
-                <textarea name="texto-mensagem" placeholder="Escreva sua mensagem aqui"></textarea>
-                
-                <input type="submit" value="Eviar mensagem">
-                <div class="clear"> </div>
-            </form>
-            
-        </div>
-		
-		</div>
+        <header>
 
-		
-		<footer>
-		
-		
-		</footer>
-        
-    </body>
-</html>
+
+        </header>
+
+
+        <div id="main">
+
+            <div id="titulo">
+                <img src="images/facebook-logo.png"> 
+                <h2> RMI Fakebook <h2>
+                        </div>
+                        <div id="container-publicar">
+                            <form method="POST" action="PublicarServlet" id="form-mensagem"> 
+
+                                <textarea name="texto-mensagem" placeholder="Escreva sua mensagem aqui"></textarea>
+
+                                <input type="submit" value="Eviar mensagem">
+                                <div class="clear"> </div>
+                            </form>
+
+                        </div>
+
+                        </div>
+
+
+                        <footer>
+
+
+                        </footer>
+
+                        </body>
+                        </html>
