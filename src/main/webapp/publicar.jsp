@@ -25,6 +25,7 @@
                 <img src="images/facebook-logo.png"> 
                 <h2> RMI Fakebook <h2>
                         </div>
+
                         <div id="container-publicar">
                             <form method="POST" action="PublicarServlet" id="form-mensagem"> 
 
