@@ -7,6 +7,7 @@
 package br.edu.ifpb.pod.servlet;
 
 
+import br.edu.ifpb.pod.FacadeService;
 import br.edu.ifpb.pod.Message;
 import br.edu.ifpb.pod.Session;
 import java.io.IOException;
@@ -43,16 +44,16 @@ public class PublicarServlet extends HttpServlet {
         Session session = (Session) request.getSession().getAttribute("session");
          Registry registry = LocateRegistry.getRegistry("", 10888);
         // hello service 
-//        FacedeService service;
-//        try {
-//            service = (FacedeService) registry.lookup("FacedeService");
-//            service.sendMessage(session, msg);
-//        } catch (RemoteException ex) {
-//            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (NotBoundException ex) {
-//            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-        //
+        FacadeService service;
+        try {
+            service = (FacadeService) registry.lookup("FacadeService");
+            service.sendMessage(session, msg);
+        } catch (RemoteException ex) {
+            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NotBoundException ex) {
+            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         response.sendRedirect("login.jsp");
     }
 

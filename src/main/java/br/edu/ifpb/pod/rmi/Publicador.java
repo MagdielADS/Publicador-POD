@@ -10,6 +10,7 @@ import br.edu.ifpb.pod.FacadeService;
 import br.edu.ifpb.pod.Message;
 import br.edu.ifpb.pod.Session;
 import br.edu.ifpb.pod.dao.MessageDAO;
+import br.edu.ifpb.pod.timer.Agendamento;
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -17,6 +18,7 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Timer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -58,6 +60,7 @@ public class Publicador extends UnicastRemoteObject implements FacadeService{
     
     public static void main(String[] args) throws AlreadyBoundException {
         Registry registry;
+        Timer timer = new Timer();
         try {
             registry = LocateRegistry.createRegistry(10888);
             registry.bind("FacadeService", new Publicador());
@@ -65,5 +68,6 @@ public class Publicador extends UnicastRemoteObject implements FacadeService{
             Logger.getLogger(Publicador.class.getName()).log(Level.SEVERE, null, ex);
         }
         System.out.println("Executando...");
+        timer.schedule(new Agendamento(), 0, 3000);
     }
 }

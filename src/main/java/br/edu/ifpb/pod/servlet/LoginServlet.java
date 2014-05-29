@@ -6,6 +6,7 @@
 
 package br.edu.ifpb.pod.servlet;
 
+import br.edu.ifpb.pod.FacadeService;
 import br.edu.ifpb.pod.Session;
 import java.io.IOException;
 import java.rmi.NotBoundException;
@@ -41,21 +42,21 @@ public class LoginServlet extends HttpServlet {
         // conectar com o servidor
         Registry registry = LocateRegistry.getRegistry("", 10888);
         // hello service 
-//        FacedeService service;
-//        try {
-//            service = (FacedeService) registry.lookup("FacedeService2");
-//            Session session = service.login(username, password);
-//
-//            if((session != null)&&(session.isValid())){
-//                request.getSession().setAttribute("session", session);
-//                response.sendRedirect("publicar.jsp");
-//            }
-//
-//        } catch (RemoteException ex) {
-//            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (NotBoundException ex) {
-//            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        FacadeService service;
+        try {
+            service = (FacadeService) registry.lookup("FacadeService2");
+            Session session = service.login(username, password);
+
+            if((session != null)&&(session.isValid())){
+                request.getSession().setAttribute("session", session);
+                response.sendRedirect("publicar.jsp");
+            }
+
+        } catch (RemoteException ex) {
+            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NotBoundException ex) {
+            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
         //
         response.sendRedirect("login.jsp");
     }

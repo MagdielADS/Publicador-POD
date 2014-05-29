@@ -22,24 +22,27 @@ import java.util.logging.Logger;
 public class TestPersistence {
     public static void main(String[] args) throws SQLException {
         MessageDAO m = new MessageDAO();
-        Message mens = new Message();
-        mens.setId("004");
-        mens.setMessageContent("Olá Marciel");
-        mens.setFrom("Antoin");
-        mens.setTo("Filipe");
+//        Message mens = new Message();
+//        mens.setId("004");
+//        mens.setMessageContent("Olá Marciel");
+//        mens.setFrom("Antoin");
+//        mens.setTo("Filipe");
+//        
+//        try {
+//            m.persist(mens);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(TestPersistence.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         
-        try {
-            m.persist(mens);
-        } catch (SQLException ex) {
-            Logger.getLogger(TestPersistence.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        List<Message> msgs = new ArrayList<Message>();
+        List<Message> msgs2 = new ArrayList<Message>();
+        msgs = m.findMessagesFId();
+        Message m1 = new Message();
+        m1 = msgs.get(0);
+        m1.setfId("fskdhsufhdfsdfs");
+        msgs2.add(m1);
         
-        List<String> msgs = new ArrayList<String>();
-        msgs = m.findMessages();
-        
-        for(int  i = 0 ; i < msgs.size(); i++){
-            System.out.println("Resultad: "+msgs.get(i));
-        }
+        m.updateFId((ArrayList<Message>) msgs2);
     }
     
     
