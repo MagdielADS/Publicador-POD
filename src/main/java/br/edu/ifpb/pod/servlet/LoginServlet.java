@@ -15,6 +15,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -40,7 +41,7 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         // conectar com o servidor
-        Registry registry = LocateRegistry.getRegistry("", 10888);
+        Registry registry = LocateRegistry.getRegistry("10.1.1.102", 10888);
         // hello service 
         FacadeService service;
         try {

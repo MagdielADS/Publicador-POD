@@ -42,7 +42,7 @@ public class PublicarServlet extends HttpServlet {
         Message msg = new Message();
         msg.setMessageContent(request.getParameter("testo-mensagem"));
         Session session = (Session) request.getSession().getAttribute("session");
-         Registry registry = LocateRegistry.getRegistry("", 10888);
+         Registry registry = LocateRegistry.getRegistry("10.1.1.102", 10888);
         // hello service 
         FacadeService service;
         try {
