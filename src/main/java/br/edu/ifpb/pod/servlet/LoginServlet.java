@@ -43,7 +43,7 @@ public class LoginServlet extends HttpServlet {
         // hello service 
         FacedeService service;
         try {
-            service = (FacedeService) registry.lookup("FacedeService");
+            service = (FacedeService) registry.lookup("FacedeService2");
             Session session = service.login(username, password);
 
             if((session != null)&&(session.isValid())){
