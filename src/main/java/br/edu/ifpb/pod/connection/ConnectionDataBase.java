@@ -22,7 +22,7 @@ public class ConnectionDataBase {
 
     //Verifiquem sua senha e login do postgres
     private ConnectionDataBase() {
-        this.url = "jdbc:postgresql://localhost:5432/projeto2pod";
+        this.url = "jdbc:postgresql://localhost:5432/publicador-pod";
         this.usuario = "postgres";
         this.senha = "123456";
     }
