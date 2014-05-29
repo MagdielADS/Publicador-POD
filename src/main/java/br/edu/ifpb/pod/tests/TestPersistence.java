@@ -10,8 +10,6 @@ package br.edu.ifpb.pod.tests;
 import br.edu.ifpb.pod.Message;
 import br.edu.ifpb.pod.dao.MessageDAO;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

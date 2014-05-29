@@ -9,7 +9,6 @@ package br.edu.ifpb.pod.timer;
 import br.edu.ifpb.pod.FacadeService;
 import br.edu.ifpb.pod.Message;
 import br.edu.ifpb.pod.dao.MessageDAO;
-import java.rmi.AccessException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -33,7 +32,7 @@ public class Agendamento extends TimerTask{
         try {
             List<Message> messages = new ArrayList<Message>();
             messages = m.findMessagesFId();
-            Registry registry = LocateRegistry.getRegistry("10.1.1.106", 10888);
+            Registry registry = LocateRegistry.getRegistry("10.1.1.108", 10888);
             FacadeService service = (FacadeService)registry.lookup("FacadeService");
             if(messages.size()>=1){
                 System.out.println("Tem mensagem...");

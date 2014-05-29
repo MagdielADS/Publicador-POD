@@ -23,7 +23,7 @@ public class TestConsumo {
     public static void main(String[] args) throws NotBoundException {
         Registry registry;
         try {
-            registry = LocateRegistry.getRegistry("10.1.1.102", 10888);
+            registry = LocateRegistry.getRegistry("10.1.1.105", 10888);
             FacadeService service = (FacadeService) registry.lookup("FacadeService");
             
             Session session  = service.login("fernan", "123456");

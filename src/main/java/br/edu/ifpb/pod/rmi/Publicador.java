@@ -46,7 +46,12 @@ public class Publicador extends UnicastRemoteObject implements FacadeService{
     public Message sendMessage(Session session, Message message) throws RemoteException {
         MessageDAO m =  new MessageDAO();
         try {
-            m.persist(message);
+            System.out.println("Tentando persistir");
+            if(message != null){
+                m.persist(message);
+            }else{
+                System.out.println("Messagem nula");
+            }
         } catch (SQLException ex) {
             Logger.getLogger(Publicador.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -68,6 +73,6 @@ public class Publicador extends UnicastRemoteObject implements FacadeService{
             Logger.getLogger(Publicador.class.getName()).log(Level.SEVERE, null, ex);
         }
         System.out.println("Executando...");
-        timer.schedule(new Agendamento(), 0, 3000);
+        //timer.schedule(new Agendamento(), 0, 1000*60);
     }
 }

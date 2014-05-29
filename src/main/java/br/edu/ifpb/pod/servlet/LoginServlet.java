@@ -15,7 +15,6 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -41,25 +40,26 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("user");
         String password = request.getParameter("pass");
         // conectar com o servidor
-        Registry registry = LocateRegistry.getRegistry("10.1.1.105", 10888);
+        
         // hello service 
-        FacadeService service;
         try {
-            service = (FacadeService) registry.lookup("FacadeService");
+            Registry registry = LocateRegistry.getRegistry("10.1.1.105", 10888);
+            FacadeService service = (FacadeService) registry.lookup("FacadeService");
             Session session = service.login(username, password);
             
             if(session != null){
                 request.getSession().setAttribute("session", session);
-                response.sendRedirect("publicar.jsp");
+//                response.sendRedirect("publicar.jsp");
+                request.getRequestDispatcher("publicar.jsp").forward(request, response);
             }
 
-        } catch (RemoteException ex) {
+        } catch (RemoteException | NotBoundException ex) {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NotBoundException ex) {
-            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        } 
         //
-        response.sendRedirect("login.jsp");
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

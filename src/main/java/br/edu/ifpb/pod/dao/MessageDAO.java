@@ -12,11 +12,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
-import javax.resource.cci.ConnectionFactory;
-import static sun.security.jgss.GSSUtil.login;
 
 /**
  *

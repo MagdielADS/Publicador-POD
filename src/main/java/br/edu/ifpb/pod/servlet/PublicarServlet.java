@@ -42,19 +42,16 @@ public class PublicarServlet extends HttpServlet {
         Message msg = new Message();
         msg.setMessageContent(request.getParameter("texto-mensagem"));
         Session session = (Session) request.getSession().getAttribute("session");
-         Registry registry = LocateRegistry.getRegistry("10.1.1.102", 10888);
+       
         // hello service 
-        FacadeService service;
         try {
-            service = (FacadeService) registry.lookup("FacadeService");
+            Registry registry = LocateRegistry.getRegistry("10.1.1.105", 10888);
+            FacadeService service = (FacadeService) registry.lookup("FacadeService");
             service.sendMessage(session, msg);
-        } catch (RemoteException ex) {
+        } catch (RemoteException | NotBoundException ex) {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NotBoundException ex) {
-            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        response.sendRedirect("login.jsp");
+        }        
+        response.sendRedirect("publicar.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
