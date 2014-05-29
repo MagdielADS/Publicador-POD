@@ -1,17 +1,33 @@
 <%-- 
     Document   : login
     Created on : 29/05/2014, 13:52:40
-    Author     : magdiel-bruno
+    Author     : Elis
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+         pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html">
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Login</title>
+        
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta charset="UTF-8">  
+        <link rel="stylesheet" type="text/css" href="css/estilo-login.css">
+        <link href='http://fonts.googleapis.com/css?family=Lato:100,300' rel='stylesheet' type='text/css'>
     </head>
+    
     <body>
-        <h1>Hello World!</h1>
+        <div class="form">
+            <div class="login">
+                <h2>RMI Fakebook</h2>                                           
+            </div>
+
+            <form action="LoginServlet" method="POST">
+                <input type="text" placeholder="Username"><br />
+                <input type="password" placeholder="Password">
+                <input class="botao submit" type="submit" value="login">
+            </form>
+        </div>
     </body>
 </html>

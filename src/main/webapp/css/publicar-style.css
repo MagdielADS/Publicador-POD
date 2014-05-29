@@ -1,0 +1,58 @@
+@import url(http://fonts.googleapis.com/css?family=Lato);
+
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: Lato, sans-serif;
+}
+
+#container-publicar{
+	width: 50%;
+	margin: 10px auto;
+	border-radius: 4px;
+	border: 1px solid #EDEDED;
+	background-color: #FAFAFA;
+}
+
+#form-mensagem{
+	width: 95%;
+	margin: 20px auto;
+}
+
+#form-mensagem textarea{
+resize:vertical;
+	padding: 5px;
+	display: block;
+	width: 100%;
+	height: 70px;
+	border-radius: 4px;
+	margin-bottom: 10px;
+	border: 1px solid #EDEDED;
+}
+
+
+
+#form-mensagem input[type="submit"]{
+	background-color: #3B5998;
+	border: 2px solid  #3B5998;
+	float: right;
+	padding: 10px;
+	border-radius: 4px;
+	color: white;
+
+}
+.clear{
+	clear: both;
+}
+
+
+#main #titulo{
+	width: 50%;
+	margin: 50px auto 0px auto;
+}
+
+#main #titulo h2{
+	display: inline;
+	font-size: 40px;
+}
