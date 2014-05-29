@@ -12,6 +12,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.resource.cci.ConnectionFactory;
 import static sun.security.jgss.GSSUtil.login;
 
@@ -35,5 +37,21 @@ public class MessageDAO {
         } finally {
             connection.close();
         }
+    }
+    
+    public List<String> findMessages() throws SQLException{
+        List<String> messages = new ArrayList<String>();
+        String sql = "select messageContent from message";
+        Connection connection = ConnectionDataBase.getInstance().getConnection();
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            ResultSet result = stmt.executeQuery();
+            while(result.next()){
+                messages.add(result.getString("messageContent"));
+            }
+        } finally {
+            connection.close();
+        }
+        return messages;
     }
 }
