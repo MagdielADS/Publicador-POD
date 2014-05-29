@@ -34,9 +34,12 @@ public class Agendamento extends TimerTask{
             List<Message> messages = new ArrayList<Message>();
             messages = m.findMessagesFId();
             Registry registry = LocateRegistry.getRegistry("10.1.1.104", 10888);
-            FacadeService service = (FacadeService)registry.lookup("FacadeServiceImp");
-            List<Message> result = service.publish((ArrayList<Message>) messages);
-            m.updateFId((ArrayList<Message>) result);
+            FacadeService service = (FacadeService)registry.lookup("FacadeService");
+            
+            if(messages.size()>=1){
+                List<Message> result = service.publish((ArrayList<Message>) messages);
+                m.updateFId((ArrayList<Message>) result);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(Agendamento.class.getName()).log(Level.SEVERE, null, ex);
         } catch (RemoteException ex) {

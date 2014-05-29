@@ -41,14 +41,14 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         // conectar com o servidor
-        Registry registry = LocateRegistry.getRegistry("10.1.1.102", 10888);
+        Registry registry = LocateRegistry.getRegistry("10.1.1.105", 10888);
         // hello service 
         FacadeService service;
         try {
-            service = (FacadeService) registry.lookup("FacadeService2");
+            service = (FacadeService) registry.lookup("FacadeService");
             Session session = service.login(username, password);
-
-            if((session != null)&&(session.isValid())){
+            
+            if(session != null){
                 request.getSession().setAttribute("session", session);
                 response.sendRedirect("publicar.jsp");
             }
