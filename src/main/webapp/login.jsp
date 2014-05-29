@@ -24,8 +24,8 @@
             </div>
 
             <form action="LoginServlet" method="POST">
-                <input type="text" id="username" placeholder="Username"><br />
-                <input type="password" id="password" placeholder="Password">
+                <input type="text" id="username" name="user" placeholder="Username"><br />
+                <input type="password" id="password" name="pass" placeholder="Password">
                 <input class="botao submit" type="submit" value="login">
             </form>
         </div>

@@ -40,7 +40,7 @@ public class PublicarServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Message msg = new Message();
-        msg.setMessageContent(request.getParameter("testo-mensagem"));
+        msg.setMessageContent(request.getParameter("texto-mensagem"));
         Session session = (Session) request.getSession().getAttribute("session");
          Registry registry = LocateRegistry.getRegistry("10.1.1.102", 10888);
         // hello service 

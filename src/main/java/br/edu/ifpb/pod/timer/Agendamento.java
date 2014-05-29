@@ -33,12 +33,20 @@ public class Agendamento extends TimerTask{
         try {
             List<Message> messages = new ArrayList<Message>();
             messages = m.findMessagesFId();
-            Registry registry = LocateRegistry.getRegistry("10.1.1.104", 10888);
+            Registry registry = LocateRegistry.getRegistry("10.1.1.106", 10888);
             FacadeService service = (FacadeService)registry.lookup("FacadeService");
-            
             if(messages.size()>=1){
+                System.out.println("Tem mensagem...");
                 List<Message> result = service.publish((ArrayList<Message>) messages);
-                m.updateFId((ArrayList<Message>) result);
+                System.out.println("Tentei enviar...");
+                
+                if(result!=null){
+                    m.updateFId((ArrayList<Message>) result);
+                }else{
+                    System.out.println("Lista de retorno nula");
+                }
+            }else{
+                System.out.println("Não tem mensagem...");
             }
         } catch (SQLException ex) {
             Logger.getLogger(Agendamento.class.getName()).log(Level.SEVERE, null, ex);
