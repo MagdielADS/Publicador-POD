@@ -4,14 +4,13 @@
     Author     : Samuell
 --%>
 
-<%@page import="br.edu.ifpb.pod.Message"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="css/publicar-style.css">
-        <title>JSP Page</title>
+        <title>FakeBook</title>
     </head>
     <body>
         <header>
@@ -30,18 +29,11 @@
                         <div id="container-publicar">
                             <form method="POST" action="PublicarServlet" id="form-mensagem"> 
 
-                                <textarea name="texto-mensagem" placeholder="Escreva sua mensagem aqui"></textarea>
+                                <textarea name="texto-mensagem" placeholder="Escreva sua mensagem aqui" required="true"></textarea>
 
-                                <input type="submit" value="Eviar mensagem">
+                                <input type="submit" value="Enviar mensagem">
                                 <div class="clear"> </div>
                             </form>
-                            <%
-                            Message message = (Message)session.getAttribute("message");
-                            if(message!=null){
-                                out.print(message.getMessageContent());
-                            }
-                            %>
-
                         </div>
 
                         </div>

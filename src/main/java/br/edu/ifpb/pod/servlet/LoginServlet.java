@@ -49,7 +49,7 @@ public class LoginServlet extends HttpServlet {
             
             if(session != null){
                 request.getSession().setAttribute("session", session);
-//                response.sendRedirect("publicar.jsp");
+                request.getSession().setAttribute("from", username);
                 request.getRequestDispatcher("publicar.jsp").forward(request, response);
             }
 
@@ -57,8 +57,6 @@ public class LoginServlet extends HttpServlet {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
             request.getRequestDispatcher("login.jsp").forward(request, response);
         } 
-        //
-        
         
     }
 
@@ -100,5 +98,4 @@ public class LoginServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

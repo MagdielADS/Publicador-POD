@@ -40,15 +40,19 @@ public class PublicarServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Message msg = new Message();
+        String from = (String) request.getSession().getAttribute("from");
         msg.setMessageContent(request.getParameter("texto-mensagem"));
+        msg.setFrom(from);
         Session session = (Session) request.getSession().getAttribute("session");
+        
        
         // hello service 
+
         try {
             Registry registry = LocateRegistry.getRegistry("10.1.1.105", 10888);
             FacadeService service = (FacadeService) registry.lookup("FacadeService");
             Message message = service.sendMessage(session, msg);
-            request.getSession().setAttribute("message", message);
+            
         } catch (RemoteException | NotBoundException ex) {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }        
