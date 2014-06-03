@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package br.edu.ifpb.pod.dao;
 
@@ -19,66 +14,61 @@ import java.util.List;
  *
  * @author magdiel-bruno
  */
+
 public class MessageDAO {
+
     public void persist(Message message) throws SQLException {
-        String sql = "insert into message(id, messageContent, m_from, m_to) "
-                + "values(?,?,?,?)";
+        String sql = "insert into message(id, messageContent, m_from, m_to) values(?,?,?,?)";
         Connection connection = ConnectionDataBase.getInstance().getConnection();
-        
-        List<String> msgs = new ArrayList<String>();
-        msgs = findMessages();
-        
+
+        List<String> msgs = new ArrayList<>();
         boolean equalsMessage = false;
-        
-        for(int i = 0; i < msgs.size(); i++){
-            if(msgs.get(i).equalsIgnoreCase(message.getMessageContent())){
+        msgs = findMessages();
+
+        for (String msg : msgs) {
+            if (msg.equalsIgnoreCase(message.getMessageContent())) {
                 equalsMessage = true;
                 break;
             }
         }
-        
-        MessageIdGenerator mId = new MessageIdGenerator();
-        
-        if(!equalsMessage){
-            try {
-                PreparedStatement stmt = connection.prepareStatement(sql);
-                stmt.setString(1, mId.generate());
+
+        if (!equalsMessage) {
+            try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+                stmt.setString(1, MessageIdGenerator.generate());
                 stmt.setString(2, message.getMessageContent());
                 stmt.setString(3, message.getFrom());
                 stmt.setString(4, message.getTo());
                 stmt.execute();
-                stmt.close();
             } finally {
                 connection.close();
             }
         }
     }
-    
-    public List<String> findMessages() throws SQLException{
-        List<String> messages = new ArrayList<String>();
+
+    public List<String> findMessages() throws SQLException {
+        List<String> messages = new ArrayList<>();
         String sql = "select messageContent from message";
-        Connection connection = ConnectionDataBase.getInstance().getConnection();
-        try {
+
+        try (Connection connection = ConnectionDataBase.getInstance().getConnection()) {
             PreparedStatement stmt = connection.prepareStatement(sql);
             ResultSet result = stmt.executeQuery();
-            while(result.next()){
+
+            while (result.next()) {
                 messages.add(result.getString("messageContent"));
             }
-        } finally {
-            connection.close();
         }
         return messages;
     }
-    
-    public List<Message> findMessagesFId() throws SQLException{
-        List<Message> messages = new ArrayList<Message>();
+
+    public List<Message> findMessagesFId() throws SQLException {
+        List<Message> messages = new ArrayList<>();
         String sql = "select id, messageContent, m_from, m_to from message where fid is null";
-        Connection connection = ConnectionDataBase.getInstance().getConnection();
-        try {
+
+        try (Connection connection = ConnectionDataBase.getInstance().getConnection()) {
             PreparedStatement stmt = connection.prepareStatement(sql);
             ResultSet result = stmt.executeQuery();
-           
-            while(result.next()){
+
+            while (result.next()) {
                 Message m = new Message();
                 m.setId(result.getString("id"));
                 m.setMessageContent(result.getString("messageContent"));
@@ -86,28 +76,24 @@ public class MessageDAO {
                 m.setTo(result.getString("m_to"));
                 messages.add(m);
             }
-        } finally {
-            connection.close();
         }
         return messages;
     }
-    
-    public void updateFId(ArrayList<Message> messages) throws SQLException{
+
+    public void updateFId(ArrayList<Message> messages) throws SQLException {
         String sql = "update message set fid=? where id=?";
         Connection connection = ConnectionDataBase.getInstance().getConnection();
-        
-        for(int i = 0; i < messages.size(); i++){
+
+        for (Message message : messages) {
             try {
                 PreparedStatement stmt = connection.prepareStatement(sql);
-                stmt.setString(2, messages.get(i).getId());
-                stmt.setString(1, messages.get(i).getfId());
-                
+                stmt.setString(2, message.getId());
+                stmt.setString(1, message.getfId());
                 stmt.execute();
-
             } finally {
                 connection.close();
             }
         }
     }
-    
+
 }

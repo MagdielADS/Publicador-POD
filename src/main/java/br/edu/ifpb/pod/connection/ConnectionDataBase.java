@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package br.edu.ifpb.pod.connection;
 
@@ -12,8 +7,9 @@ import java.sql.SQLException;
 
 /**
  *
- * @author magdiel-bruno
+ * @author marciel
  */
+
 public class ConnectionDataBase {
     private static ConnectionDataBase instance;
     private final String url;
@@ -24,7 +20,7 @@ public class ConnectionDataBase {
     private ConnectionDataBase() {
         this.url = "jdbc:postgresql://localhost:5432/publicador-pod";
         this.usuario = "postgres";
-        this.senha = "123456";
+        this.senha = "12345";
     }
 
     public static ConnectionDataBase getInstance() {
