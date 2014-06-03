@@ -26,6 +26,7 @@ public class Agendamento extends TimerTask {
         MessageDAO m = new MessageDAO();
 
         try {
+            System.out.println("Verificando por mensagens...");
             List<Message> messages = new ArrayList<>();
             messages = m.findMessagesFId();
             Registry registry = LocateRegistry.getRegistry("192.168.10.7", 10888);
