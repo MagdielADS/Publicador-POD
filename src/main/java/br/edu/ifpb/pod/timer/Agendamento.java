@@ -28,7 +28,7 @@ public class Agendamento extends TimerTask {
         try {
             List<Message> messages = new ArrayList<>();
             messages = m.findMessagesFId();
-            Registry registry = LocateRegistry.getRegistry("192.168.43.104", 10888);
+            Registry registry = LocateRegistry.getRegistry("192.168.10.7", 10888);
             FacadeService service = (FacadeService) registry.lookup("FacadeService");
 
             if (messages.size() >= 1) {

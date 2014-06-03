@@ -66,6 +66,6 @@ public class Publicador extends UnicastRemoteObject implements FacadeService{
         } catch (RemoteException ex) {
             Logger.getLogger(Publicador.class.getName()).log(Level.SEVERE, null, ex);
         }
-        timer.schedule(new Agendamento(), 0, 3000);
+        timer.schedule(new Agendamento(), 0, 3000*60);
     }
 }

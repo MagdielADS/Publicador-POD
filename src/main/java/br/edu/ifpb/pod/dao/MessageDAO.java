@@ -82,10 +82,12 @@ public class MessageDAO {
 
     public void updateFId(ArrayList<Message> messages) throws SQLException {
         String sql = "update message set fid=? where id=?";
-        Connection connection = ConnectionDataBase.getInstance().getConnection();
-
+        Connection connection = null;
+        
         for (Message message : messages) {
             try {
+                connection = ConnectionDataBase.getInstance().getConnection();
+
                 PreparedStatement stmt = connection.prepareStatement(sql);
                 stmt.setString(2, message.getId());
                 stmt.setString(1, message.getfId());
